@@ -3,7 +3,7 @@
 
 
 
-void init();
+void pong_init();
 
 bool test_game_over();
 

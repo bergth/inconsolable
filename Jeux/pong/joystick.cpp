@@ -10,7 +10,7 @@ float Joystick::get_Tx() {
 	float Tx;
 
 
-	Tx = ((float)analogRead(A0) - 512) / 512;
+	Tx = ((float)analogRead(A0) - 341) / 341;
 
 
 	if (Tx < 0.15 && Tx > -0.15)
@@ -25,7 +25,7 @@ float Joystick::get_Ty() {
 	float Ty;
 
 
-	Ty = ((float)analogRead(A1) - 512) / 512;
+	Ty = ((float)analogRead(A1) - 341) / 341;
 
 
 	if (Ty < 0.15 && Ty > -0.15)

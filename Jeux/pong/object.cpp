@@ -1,7 +1,6 @@
-#include <stdlib.h>
+/*#include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include <Arduino.h>
 
 
 #include "ball.h"
@@ -9,19 +8,6 @@
 
 
 using namespace config;
-
-
-
-
-float Ball::dim_x;
-float Ball::dim_y;
-float Ball::center_x;
-float Ball::center_y;
-float Ball::coord_x;
-float Ball::coord_y;
-int Ball::dir_x;
-float Ball::coef_dir;
-
 
 
 
@@ -85,20 +71,20 @@ void Ball::init() {
 
 	Ball::dir_x = 1;
 
-	//srand(time(NULL));
-	//Ball::coef_dir = rand() % 6 - 3; // entre -3 et 3
-	Ball::coef_dir = 0;
+	srand(time(NULL));
+	Ball::coef_dir = rand() % 6 - 3; // entre -3 et 3
 }
 
 
 void Ball::update() {
-	double v = 2; //vitesse de la ball || max : 1/coef_max
+	float v = 1/3; //vitesse de la ball || max : 1/coef_max
 	float dx = v / sqrt(1 + pow(Ball::coef_dir, 2));
-  //Serial.println( "dx : " + String(dx, 2) + "  " + String(dx * Ball::dir_x, 2) + "  " + String(Ball::coef_dir * dx, 2)  + "  " + String(v, 2) );
-  
+
+
 	Ball::coord_x += dx * Ball::dir_x;
 	Ball::coord_y += Ball::coef_dir * dx;
 
-	if ( (Ball::coord_y <= BORDER_THICKNESS + Ball::center_y) || (Ball::coord_y >= DIM_Y - (BORDER_THICKNESS + Ball::center_y)) )
+	if ( (Ball::coord_y == BORDER_THICKNESS + Ball::center_y) || (Ball::coord_y == DIM_Y - (BORDER_THICKNESS + Ball::center_y)) )
 		Ball::inverse_dir_y();
-}
+
+}*/

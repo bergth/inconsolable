@@ -34,6 +34,16 @@ float Racket::get_center_y() {
 }
 
 
+float Racket::get_coord_x() {
+	return this->coord_x;
+}
+
+
+float Racket::get_coord_y() {
+	return this->coord_y;
+}
+
+
 void Racket::set_coord_y(float y) {
 	this->coord_y = y;
 }
@@ -43,7 +53,7 @@ void Racket::set_coord_y(float y) {
 
 void Racket::update()
 {
-	float v = 1/3; //vitesse
+	float v = 2; //vitesse
 	float new_coord_y = this->coord_y + Joystick::get_Ty() * v;
 
 	if (new_coord_y < BORDER_THICKNESS + B_DIM_Y + R_DIM_Y / 2) {

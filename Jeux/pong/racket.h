@@ -18,6 +18,10 @@ public:
 
 	float get_center_y();
 
+	float get_coord_x();
+
+	float get_coord_y();
+
 	void set_coord_y(float y);
 
 
