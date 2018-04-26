@@ -17,6 +17,8 @@ public:
 
 	static void set_coord_y(float y);
 
+  static int get_dir_x();
+
 	static void set_coef_dir(const float a);
 
 

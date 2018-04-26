@@ -75,6 +75,7 @@
     <ProjectCapability Include="VisualMicro" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="Pong.ino">
       <FileType>CppCode</FileType>
     </None>
@@ -88,6 +89,8 @@
       <FileType>CppCode</FileType>
     </ClInclude>
     <ClInclude Include="racket.h" />
+    <ClInclude Include="racket_IA.h" />
+    <ClInclude Include="racket_player.h" />
     <ClInclude Include="__vm\.Pong.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +98,8 @@
     <ClCompile Include="joystick.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="racket.cpp" />
+    <ClCompile Include="racket_IA.cpp" />
+    <ClCompile Include="racket_player.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>

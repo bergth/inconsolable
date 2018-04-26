@@ -56,6 +56,11 @@ void Ball::set_coord_y(float y) {
 }
 
 
+int Ball::get_dir_x() {
+  return Ball::dir_x;
+}
+
+
 void Ball::set_coef_dir(const float a) {
 	Ball::coef_dir = a;
 }
@@ -92,13 +97,14 @@ void Ball::init() {
 
 
 void Ball::update() {
-	double v = 2; //vitesse de la ball || max : 1/coef_max
-	float dx = v / sqrt(1 + pow(Ball::coef_dir, 2));
+	float dx = B_SPEED / sqrt(1 + pow(Ball::coef_dir, 2));
   //Serial.println( "dx : " + String(dx, 2) + "  " + String(dx * Ball::dir_x, 2) + "  " + String(Ball::coef_dir * dx, 2)  + "  " + String(v, 2) );
   
 	Ball::coord_x += dx * Ball::dir_x;
 	Ball::coord_y += Ball::coef_dir * dx;
 
-	if ( (Ball::coord_y <= BORDER_THICKNESS + Ball::center_y) || (Ball::coord_y >= DIM_Y - (BORDER_THICKNESS + Ball::center_y)) )
-		Ball::inverse_dir_y();
+	if (Ball::coord_y <= BORDER_THICKNESS + Ball::center_y)
+		Ball::coef_dir = 1;
+  else if(Ball::coord_y >= DIM_Y - (BORDER_THICKNESS + Ball::center_y))
+    Ball::coef_dir = -1;
 }

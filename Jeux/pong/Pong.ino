@@ -6,7 +6,8 @@
 
 
 #include "pong.h"
-#include "racket.h"
+#include "racket_player.h"
+#include "racket_IA.h"
 #include "ball.h"
 #include "config.h"
 
@@ -42,8 +43,8 @@ Adafruit_SSD1306 tft(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
 
 //init des objets
-Racket* player = new Racket(R_DIM_X, R_DIM_Y, R_X1, R_Y);
-Racket* enemy = new Racket(R_DIM_X, R_DIM_Y, R_X2, R_Y);
+Racket_player* player = new Racket_player(R_DIM_X, R_DIM_Y, R_X1, R_Y);
+Racket_IA* enemy = new Racket_IA(R_DIM_X, R_DIM_Y, R_X2, R_Y);
 
 
 
@@ -62,9 +63,9 @@ bool test_game_over() {
 	tft.setTextColor(WHITE);
 	tft.setCursor(42, 29);
 
-	if (Ball::get_coord_x() <= B_X_MIN)
+	if (Ball::get_coord_x() <= B_X_MIN - 0.5)
 		tft.print("YOU LOSE");
-	else if (Ball::get_coord_x() >= B_X_MAX)
+	else if (Ball::get_coord_x() >= B_X_MAX + 0.5)
 		tft.print("YOU WIN");
   else
 		return 0;
@@ -78,10 +79,11 @@ bool test_game_over() {
 void print_border() {
 	size_t i, j;
 
-	for (i = 0; i != DIM_Y; i++) {
-		for (j = 0; j != DIM_X; j++) {
-			if ( (i < BORDER_THICKNESS) || (i >= DIM_Y - BORDER_THICKNESS) || (j < BORDER_THICKNESS) || (j >= DIM_X - BORDER_THICKNESS) )
+	for (i = 0; i < DIM_Y; i++) {
+		for (j = 0; j < DIM_X; j++) {
+			if ( (i < BORDER_THICKNESS) || (i >= DIM_Y - BORDER_THICKNESS) || (j < BORDER_THICKNESS) || (j >= DIM_X - BORDER_THICKNESS) ) {
 				tft.drawPixel(j, i, WHITE);
+			}
 		}
 	}
 

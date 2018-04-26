@@ -25,10 +25,12 @@ public:
 	void set_coord_y(float y);
 
 
-	void update();
+  void update();
+
+  virtual float update_virtual() = 0;
 
 
-private:
+protected:
 
 	float dim_x;
 	float dim_y;
