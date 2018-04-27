@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Pong.ino" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Pong.vsarduino.h">
@@ -37,15 +36,6 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="racket_player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="racket_IA.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="racket.cpp">
@@ -55,15 +45,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ball.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="racket_player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="racket_IA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

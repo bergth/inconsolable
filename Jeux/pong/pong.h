@@ -1,9 +1,11 @@
+#pragma once
+
 #include "racket.h"
 
 
 
 
-void pong_init();
+void initialisation();
 
 bool test_game_over();
 

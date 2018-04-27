@@ -1,10 +1,11 @@
+#pragma once
+
 #include "joystick.h"
 #include "ball.h"
 
 
 
 
-#pragma once
 class Racket
 {
 public:
@@ -18,19 +19,13 @@ public:
 
 	float get_center_y();
 
-	float get_coord_x();
-
-	float get_coord_y();
-
 	void set_coord_y(float y);
 
 
-  void update();
-
-  virtual float update_virtual() = 0;
+	void update();
 
 
-protected:
+private:
 
 	float dim_x;
 	float dim_y;
