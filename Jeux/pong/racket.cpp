@@ -52,7 +52,8 @@ void Racket::set_coord_y(float y) {
 
 
 void Racket::update(){
-  float new_coord_y = this->update_virtual();
+  float new_coord_y = this->coord_y;
+  new_coord_y += this->update_virtual();
 
  if (new_coord_y < BORDER_THICKNESS + B_DIM_Y + R_DIM_Y / 2) {
     if (((int)this->coord_x >= (int)Ball::get_coord_x() - ((int)this->center_x + (int)Ball::get_center_x())) && ((int)this->coord_x <= (int)Ball::get_coord_x() + (int)this->center_x + (int)Ball::get_center_x()) && ((int)Ball::get_coord_y() == BORDER_THICKNESS + (int)Ball::get_center_y())) {

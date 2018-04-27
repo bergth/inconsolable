@@ -19,5 +19,5 @@ Racket_player::~Racket_player()
 
 
 float Racket_player::update_virtual() {
-	return this->coord_y + Joystick::get_Ty() * R_SPEED;
+	return Joystick::get_Ty() * R_SPEED;
 }

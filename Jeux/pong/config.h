@@ -32,6 +32,6 @@ namespace config {
 	const size_t B_Y_MIN		    	=	BORDER_THICKNESS;
 	const size_t B_Y_MAX			    =	DIM_Y - B_Y_MIN;
 //SPEED object
-  const size_t R_SPEED          = 2; //vitesse de la racket || max : 1
-  const size_t B_SPEED          = 2; //vitesse de la ball || max : 1/coef_max
+  const float R_SPEED          = 2; //vitesse de la racket || max : 1
+  const float B_SPEED          = 2; //vitesse de la ball || max : 1/coef_max
 }
