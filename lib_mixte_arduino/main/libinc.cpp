@@ -56,27 +56,37 @@ bool Inconsolable::isRunning(){
 
 
 void Inconsolable::drawPixel(size_t coord_x,size_t coord_y, IncColor color){
-  screen.drawPixel(size_t coord_x, size_t coord_y, color);
+  screen.drawPixel(coord_x, coord_y, color);
 }
 
 
 void Inconsolable::drawLine(size_t coord_x1, size_t coord_x2, size_t coord_y1, size_t coord_y2, IncColor color){
-  screen.drawLine(size_t coord_x1, size_t coord_y1, size_t coord_x2, size_t coord_y2, color);
+  screen.drawLine(coord_x1, coord_y1, coord_x2, coord_y2, color);
 }
 
 
 void Inconsolable::drawRect(size_t coord_x1, size_t coord_x2, size_t coord_y1, size_t coord_y2, IncColor color){
-  screen.drawRect(size_t coord_x, size_t coord_y, size_t w, size_t h, color);
+  screen.drawRect(coord_x, coord_y, w, h, color);
 }
 
 
 void Inconsolable::fillRect(size_t coord_x1, size_t coord_x2, size_t coord_y1, size_t coord_y2, IncColor color){
-  display.fillRect(size_t coord_x, size_t coord_y, size_t w, size_t h, color);
+  screen.fillRect(coord_x, coord_y, w, h, color);
+}
+
+
+void Inconsolable::drawTriangle(size_t coord_x1, size_t coord_y1, size_t coord_x2, size_t coord_y2, size_t coord_x3, size_t coord_y3, IncColor color){
+  screen.drawTriangle(coord_x1, coord_y1, coord_x2, coord_y2, coord_x3, coord_y3, color);
+}
+
+
+void Inconsolable::fillTriangle(size_t coord_x1, size_t coord_y1, size_t coord_x2, size_t coord_y2, size_t coord_x3, size_t coord_y3, IncColor color){
+  screen.fillTriangle(coord_x1, coord_y1, coord_x2, coord_y2, coord_x3, coord_y3, color);
 }
 
 
 void Inconsolable::drawCircle(size_t coord_x, size_t coord_y, size_t r, IncColor color){
-  screen.drawCircle(size_t coord_x, size_t coord_y, size_t r, color);
+  screen.drawCircle(coord_x, coord_y, r, color);
 }
 
 
@@ -85,5 +95,23 @@ void Inconsolable::drawChar(size_t coord_x, size_t coord_y, char c, size_t txt_s
   screen.setTextColor(color);
   screen.setCursor(x ,y);
   screen.write(c);
+}
+
+
+void Inconsolable::drawString(size_t coord_x, size_t coord_y, char* s, size_t txt_size, IncColor color){
+  screen.setTextSize(txt_size);
+  screen.setTextColor(color);
+  screen.setCursor(x ,y);
+  screen.print(s);
+}
+
+
+void Inconsolable::drawBitmap(size_t coord_x, size_t coord_y, uint32_t bitmap[], size_t w, size_t h){
+  //????
+}
+
+
+void Inconsolable::fillScreen(IncColor color){
+  screen.fillScreen(color);
 }
 
