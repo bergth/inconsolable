@@ -1,5 +1,6 @@
 #include"libinc.hpp"
 #include<iostream>
+ #include <allegro5/allegro_font.h>
 using namespace std;
 
 
@@ -99,3 +100,27 @@ void Inconsolable::drawLine(size_t coord_x1, size_t coord_y1, size_t coord_x2, s
 {
     al_draw_line(coord_x1,coord_y1,coord_x2,coord_y2,al_map_rgb(color.r,color.g,color.b),5.0);
 }
+
+void Inconsolable::drawRect(size_t coord_x1, size_t coord_x2, size_t coord_y1, size_t coord_y2, IncColor color)
+{
+    al_draw_rectangle(coord_x1,coord_y1,coord_x2,coord_y2,al_map_rgb(color.r,color.g,color.b),0);
+}
+
+void Inconsolable::fillRect(size_t coord_x1, size_t coord_x2, size_t coord_y1, size_t coord_y2, IncColor color)
+{
+    al_draw_filled_rectangle(coord_x1, coord_y1, coord_x2, coord_y2, al_map_rgb(color.r,color.g,color.b));
+}
+
+void Inconsolable::drawCircle(size_t coord_x, size_t coord_y, size_t r, IncColor color)
+{
+    al_draw_circle(coord_x, coord_y, r, al_map_rgb(color.r,color.g,color.b),5.0);
+}
+
+/*void Inconsolable::drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color)
+{
+    ALLEGRO_FONT* font = al_load_font("ARIAL",txt_size,0);
+
+    al_draw_text(font,al_map_rgb(color.r,color.g,color.b),coord_x, coord_y, 0, "c");
+
+
+}*/
