@@ -1,6 +1,5 @@
 #include"libinc.hpp"
 #include<iostream>
- #include <allegro5/allegro_font.h>
 using namespace std;
 
 
@@ -70,8 +69,8 @@ void Inconsolable::update()
                 running = false;
                 break;
             default:
-                cerr << "Unsupported event received: " << event.type << endl;
-                exit(1);
+                //cerr << "Unsupported event received: " << event.type << endl;
+                //exit(1);
                 break;
         }
     }
@@ -116,11 +115,8 @@ void Inconsolable::drawCircle(size_t coord_x, size_t coord_y, size_t r, IncColor
     al_draw_circle(coord_x, coord_y, r, al_map_rgb(color.r,color.g,color.b),5.0);
 }
 
-/*void Inconsolable::drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color)
+void Inconsolable::drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color)
 {
     ALLEGRO_FONT* font = al_load_font("ARIAL",txt_size,0);
-
     al_draw_text(font,al_map_rgb(color.r,color.g,color.b),coord_x, coord_y, 0, "c");
-
-
-}*/
+}

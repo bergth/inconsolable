@@ -1,6 +1,6 @@
-CXXC=g++ -fsanitize=address
+CXXC=g++ -g -fsanitize=address
 CXXFLAGS= -std=c++14 -W -Wall -Wextra -Werror -Wfatal-errors #-Weffc++
-LDFLAGS= -lallegro -lallegro_primitives
+LDFLAGS= -lallegro -lallegro_primitives -lallegro_ttf -lallegro_font
 EXEC=main
 SRC= $(wildcard *.cpp)
 OBJ=$(SRC:.cpp=.oo)

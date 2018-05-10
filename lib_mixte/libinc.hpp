@@ -1,8 +1,11 @@
 #include<cstddef>
 #include<cstdint>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_opengl.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
-
 struct s_color {
     uint8_t r;
     uint8_t g;
