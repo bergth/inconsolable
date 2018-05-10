@@ -35,5 +35,5 @@ class Inconsolable
         void drawRect(size_t coord_x1, size_t coord_x2, size_t coord_y1, size_t coord_y2, IncColor color);
         void fillRect(size_t coord_x1, size_t coord_x2, size_t coord_y1, size_t coord_y2, IncColor color);
         void drawCircle(size_t coord_x, size_t coord_y, size_t r, IncColor color);
-        void drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color);
+        void drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color,char* c);
 };
