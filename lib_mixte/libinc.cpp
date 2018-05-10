@@ -42,8 +42,12 @@ Inconsolable::Inconsolable(size_t sx, size_t sy, size_t FPS)
     al_flip_display();
     al_start_timer(timer);
     al_init_primitives_addon();
+    al_init_font_addon();
+    al_init_ttf_addon();
     running = true;
     redraw = true;
+
+
 }
 
 Inconsolable::~Inconsolable()
@@ -117,6 +121,11 @@ void Inconsolable::drawCircle(size_t coord_x, size_t coord_y, size_t r, IncColor
 
 void Inconsolable::drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color)
 {
-    ALLEGRO_FONT* font = al_load_font("ARIAL",txt_size,0);
+    ALLEGRO_FONT* font = al_load_font("arial.ttf",txt_size,0);
+    if(!font)
+    {
+        cerr << "Erreur loading font" << endl;
+        exit(1);
+    }
     al_draw_text(font,al_map_rgb(color.r,color.g,color.b),coord_x, coord_y, 0, "c");
 }
