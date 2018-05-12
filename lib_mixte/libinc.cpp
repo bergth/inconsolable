@@ -83,9 +83,11 @@ void Inconsolable::update()
     {
         cout << "refresh" << endl;
         al_flip_display();
-        //al_clear_to_color(al_map_rgb(0,0,0));
+        al_clear_to_color(al_map_rgb(0,0,0));
         redraw = false;
     }
+
+
 
 }
 
