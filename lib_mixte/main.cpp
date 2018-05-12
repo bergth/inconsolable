@@ -6,7 +6,7 @@
 int main()
 {
 
-    Inconsolable inc(500,500,20);
+    /*Inconsolable inc(500,500,20);
     while(inc.isRunning())
     {
 
@@ -61,6 +61,11 @@ int main()
 		//inc.drawCircle(250,250,50,{255,255,255});
 		//inc.drawChar(250,250,16,{255,255,255},(char*)"cb");
         inc.update();
-    }
+    }*/
+
+    Pong p(500,500);
+
+    p.game_running();
+
     return 0;
 }
