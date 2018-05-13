@@ -1,4 +1,4 @@
-
+#include <utility> 
 
 class Pong
 {
@@ -34,11 +34,24 @@ class Ball
 
 };
 
-class raquette
+
+class Raquette
 {
     public:
+        Raquette(int x, int y, int lenght, int large);
+        int get_x1() const;
+        int get_y1() const;
+        int get_x2() const;
+        int get_y2() const;
+
 
     private:
+        int x1;
+        int y1;
+        int x2;
+        int y2;
+        std::pair<int,int> center;
+        
 
 };
 
