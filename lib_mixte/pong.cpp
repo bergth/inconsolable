@@ -45,6 +45,8 @@ void Pong::game_running() const
 
 
         //inc.drawCircle(xb,yb,rb,{255,255,255});
+        rp.moove_IA(b,hauteur,largeur);
+        ria.moove_IA(b,hauteur,largeur);
         inc.fillRect(rp.get_x1(), rp.get_x2(), rp.get_y1(), rp.get_y2(),{255,255,255});
         inc.fillRect(ria.get_x1(), ria.get_x2(), ria.get_y1(), ria.get_y2(),{255,255,255});
         inc.drawCircle(b.get_x(),b.get_y(),b.get_r(),{255,255,255});
@@ -52,7 +54,7 @@ void Pong::game_running() const
 
         inc.update();
 
-        b.parcour(hauteur,largeur);
+        b.parcour(hauteur,largeur,rp,ria);
 
     }
 
@@ -90,7 +92,7 @@ int Ball::get_r()const
     return r;
 }
 
-void Ball::parcour(int hauteur, int largeur)
+void Ball::parcour(int hauteur, int largeur, Raquette rp, Raquette ria)
 {
     int p;
 
@@ -117,6 +119,16 @@ void Ball::parcour(int hauteur, int largeur)
         sense_y = 1;
     }
 
+    if(rp.est_la(x,y))
+    {
+        sense_x = 1;
+    }
+
+    if(ria.est_la(x,y))
+    {
+        sense_x = -1;
+    }
+
     x = x + (sense_x * p);
 
     y = y + (sense_y * p);
@@ -135,9 +147,9 @@ Raquette::Raquette(int _x1, int _y1, int _x2, int _y2)
 
     x2 = _x2;
 
-    center.first = _x2;
+    centerx = (x1 + x2)/2;
 
-    center.second = (_y1+_y2)/2;
+    centery = (y1 +y2)/2;
 
 }
 
@@ -161,3 +173,50 @@ int Raquette::get_y2() const
     return y2;
 }
 
+void Raquette::moove_IA(Ball la_balle, int hauteur, int largeur)
+{
+
+    int yb = la_balle.get_y();
+
+    int p = (hauteur + largeur) /200;
+    
+
+    if(yb != centery )
+    {
+        if(yb > centery )
+        {
+            if(y2 +p <= hauteur)
+            {
+                y1 = y1 + p;
+
+                y2 = y2 + p;
+
+            }
+        }
+
+        if(yb < centery )
+        {
+            if (y1 -p >=0)
+            {
+                y1 = y1 - p;
+
+                y2 = y2 - p;
+            }
+        }
+
+         centery = (y1 + y2)/2;
+
+    }
+}
+
+bool Raquette::est_la(int x, int y) const
+{
+    if ((x==x1 || x == x2) && (y>=y1 && y<=y2))
+    {
+        return true;
+
+    }
+
+    else
+        return false;
+}
