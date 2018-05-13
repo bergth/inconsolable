@@ -38,11 +38,12 @@ class Ball
 class Raquette
 {
     public:
-        Raquette(int x, int y, int lenght, int large);
+        Raquette(int x1, int y1, int x2, int y2);
         int get_x1() const;
         int get_y1() const;
         int get_x2() const;
         int get_y2() const;
+        void moove_IA(Ball la_balle);
 
 
     private:
