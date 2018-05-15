@@ -25,15 +25,21 @@ void Pong::game_running() const
 
     Ball b(x,y,r);
 
+    Raquette barre(x,y,x,y);
+
+    inc.fillRect(barre.get_x1(), barre.get_x2(), barre.get_y1(), barre.get_y2(),{255,255,255});
+
     while(inc.isRunning())
     {
-        int xb = b.get_x();
+        /*int xb = b.get_x();
         int yb = b.get_y();
-        int rb = b.get_r();
+        int rb = b.get_r()*/;
             
 
 
-        inc.drawCircle(xb,yb,rb,{255,255,255});
+        //inc.drawCircle(xb,yb,rb,{255,255,255});
+        inc.fillRect(barre.get_x1(), barre.get_x2(), barre.get_y1(), barre.get_y2(),{255,255,255});
+        inc.drawCircle(b.get_x(),b.get_y(),b.get_r(),{255,255,255});
         
 
         inc.update();
@@ -110,3 +116,40 @@ void Ball::parcour(int hauteur, int largeur)
 
 
 }
+
+Raquette::Raquette(int x, int y, int lenght, int large)
+{
+    y1 = y - lenght/2;
+
+    y2 = y + lenght/2;
+
+    x1 = x - large;
+
+    x2 = x;
+
+    center.first = x;
+
+    center.second = y;
+
+}
+
+int Raquette::get_x1() const
+{
+    return x1;
+}
+
+int Raquette::get_y1() const
+{
+    return y1;
+}
+
+int Raquette::get_x2() const
+{
+    return x2;
+}
+
+int Raquette::get_y2() const
+{
+    return y2;
+}
+
