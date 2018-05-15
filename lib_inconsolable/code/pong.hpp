@@ -1,5 +1,3 @@
-#include <utility> 
-
 class Pong
 {
     public:
@@ -38,12 +36,11 @@ class Ball
 class Raquette
 {
     public:
-        Raquette(int x1, int y1, int x2, int y2);
+        Raquette(int x, int y, int lenght, int large);
         int get_x1() const;
         int get_y1() const;
         int get_x2() const;
         int get_y2() const;
-        void moove_IA(Ball la_balle);
 
 
     private:
@@ -51,7 +48,8 @@ class Raquette
         int y1;
         int x2;
         int y2;
-        std::pair<int,int> center;
+        int x_center;
+        int y_center;
         
 
 };

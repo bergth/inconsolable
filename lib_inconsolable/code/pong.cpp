@@ -16,7 +16,6 @@ void Pong::game_running() const
     Inconsolable inc(hauteur,largeur,20);
 
     int x,y,r;
-    int largeur_r, longueur_r;
 
     x = largeur / 10;
 
@@ -24,18 +23,12 @@ void Pong::game_running() const
 
     r = (hauteur + largeur)/200;
 
-    largeur_r = largeur/10;
-
-    longueur_r = hauteur/4;
-
     Ball b(x,y,r);
 
-    Raquette rp(largeur_r,longueur_r,2*largeur_r,2*longueur_r);
-    Raquette ria(11*largeur_r,longueur_r,12*largeur_r,2*longueur_r);
+    Raquette barre(x,y,x,y);
 
-    inc.fillRect(rp.get_x1(), rp.get_x2(), rp.get_y1(), rp.get_y2(),{255,255,255});
-    inc.fillRect(ria.get_x1(), ria.get_x2(), ria.get_y1(), ria.get_y2(),{255,255,255});
-    
+    inc.fillRect(barre.get_x1(), barre.get_x2(), barre.get_y1(), barre.get_y2(),{255,255,255});
+
     while(inc.isRunning())
     {
         /*int xb = b.get_x();
@@ -45,8 +38,7 @@ void Pong::game_running() const
 
 
         //inc.drawCircle(xb,yb,rb,{255,255,255});
-        inc.fillRect(rp.get_x1(), rp.get_x2(), rp.get_y1(), rp.get_y2(),{255,255,255});
-        inc.fillRect(ria.get_x1(), ria.get_x2(), ria.get_y1(), ria.get_y2(),{255,255,255});
+        inc.fillRect(barre.get_x1(), barre.get_x2(), barre.get_y1(), barre.get_y2(),{255,255,255});
         inc.drawCircle(b.get_x(),b.get_y(),b.get_r(),{255,255,255});
         
 
@@ -125,19 +117,19 @@ void Ball::parcour(int hauteur, int largeur)
 
 }
 
-Raquette::Raquette(int _x1, int _y1, int _x2, int _y2)
+Raquette::Raquette(int x, int y, int lenght, int large)
 {
-    y1 = _y1;
+    y1 = y - lenght/2;
 
-    y2 = _y2;
+    y2 = y + lenght/2;
 
-    x1 = _x1;
+    x1 = x - large;
 
-    x2 = _x2;
+    x2 = x;
 
-    center.first = _x2;
+    x_center = x;
 
-    center.second = (_y1+_y2)/2;
+    y_center = y;
 
 }
 
