@@ -82,7 +82,7 @@ void Ball::parcour(int hauteur, int largeur)
 
     p = (hauteur + largeur) /200;
 
-    if(x+p>=largeur - r)
+    if(x+p>=hauteur - r)
     {
         sense_x = -1;
     }
@@ -92,7 +92,7 @@ void Ball::parcour(int hauteur, int largeur)
         sense_x = 1;
     }
             
-    if(y+p >= hauteur - r)
+    if(y+p >= largeur - r)
     {
         sense_y=-1;
                 

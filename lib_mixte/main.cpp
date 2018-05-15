@@ -63,7 +63,7 @@ int main()
         inc.update();
     }*/
 
-    Pong p(500,500);
+    Pong p(320,240);
 
     p.game_running();
 
