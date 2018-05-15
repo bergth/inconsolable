@@ -5,6 +5,7 @@
 
 
 
+#include "libinc.hpp"
 #include "pong.h"
 #include "racket.h"
 #include "ball.h"
@@ -39,6 +40,9 @@ using namespace config;
 #define OLED_RESET 13
 
 Adafruit_SSD1306 tft(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+Inconsolable* inc = new Inconsolable();
+
+
 
 
 //init des objets
@@ -58,18 +62,15 @@ void init() {
 
 
 bool test_game_over() {
-	tft.setTextSize(1);
-	tft.setTextColor(WHITE);
-	tft.setCursor(42, 29);
 
-	if (Ball::get_coord_x() == B_X_MIN)
-		tft.print("YOU LOSE");
+	/*if (Ball::get_coord_x() == B_X_MIN)
+    inc->drawString(49, 29, "YOU LOSE", 1, WHITE);
 
 	else if (Ball::get_coord_x() == B_Y_MAX)
-		tft.print("YOU WIN");
+    inc->drawString(49, 29, "YOU WIN", 1, WHITE);
 
 	else
-		return 0;
+		return 0;*/
 
 	init();
 
@@ -86,7 +87,7 @@ void print_border() {
 		for (j = 0; j != DIM_X; j++) {
 			if (j == BORDER_THICKNESS)
 				j = DIM_X - BORDER_THICKNESS;
-			tft.drawPixel(j, i, WHITE);
+			//inc->drawPixel(j, i, WHITE);
 		}
 	}
 
@@ -135,6 +136,11 @@ void setup()
 
 	//init objets
 	Ball::init();
+
+  tft.drawPixel(10, 10, WHITE);
+
+  IncColor WHITEE = {255, 255, 255};//IncColor((uint8_t)0xFF, (uint8_t)0xFF, (uint8_t)0xFF)
+  inc->drawPixel(10, 10, WHITEE);
 }
 
 void loop()
