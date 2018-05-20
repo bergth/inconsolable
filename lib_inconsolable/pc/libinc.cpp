@@ -1,7 +1,10 @@
 #include"libinc.hpp"
 #include<iostream>
+#include<chrono>
+#include <ratio>
+#include<ctime>
 using namespace std;
-
+using namespace std::chrono;
 
 Inconsolable::Inconsolable(size_t sx, size_t sy, size_t FPS)
 {
@@ -47,7 +50,7 @@ Inconsolable::Inconsolable(size_t sx, size_t sy, size_t FPS)
     running = true;
     redraw = true;
 
-
+    last_time = time(0)*1000;
 }
 
 Inconsolable::~Inconsolable()
@@ -83,7 +86,7 @@ void Inconsolable::update()
     {
         cout << "refresh" << endl;
         al_flip_display();
-        al_clear_to_color(al_map_rgb(0,0,0));
+        //al_clear_to_color(al_map_rgb(0,0,0));
         redraw = false;
     }
 
@@ -130,4 +133,15 @@ void Inconsolable::drawChar(size_t coord_x, size_t coord_y, size_t txt_size, Inc
         exit(1);
     }
     al_draw_text(font,al_map_rgb(color.r,color.g,color.b),coord_x, coord_y, 0, c);
+}
+
+bool Inconsolable::time_since(int t)
+{
+    time_t new_time = time(0)*1000;
+    if(new_time - last_time > t)
+    {
+        last_time = new_time;
+        return true;
+    }
+    return false;
 }

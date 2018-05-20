@@ -3,7 +3,7 @@
 rm -rf tmp
 mkdir tmp
 
-cp pc/libinc.* tmp/
+cp pc/* tmp/
 cp code/* tmp/
 cp make/Makefile.pc tmp/Makefile
 cd tmp

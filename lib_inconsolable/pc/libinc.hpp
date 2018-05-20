@@ -1,5 +1,8 @@
+#ifndef LIBINC_HPP
+#define LIBINC_HPP
 #include<cstddef>
 #include<cstdint>
+#include<chrono>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_opengl.h>
@@ -14,6 +17,7 @@ struct s_color {
 
 typedef s_color IncColor;
 
+
 class Inconsolable
 {
     private:
@@ -24,6 +28,8 @@ class Inconsolable
         ALLEGRO_TIMEOUT timeout;
         bool running;
         bool redraw;
+        time_t last_time;
+
     public:
         Inconsolable(size_t sx, size_t sy,size_t FPS);
         ~Inconsolable();
@@ -36,4 +42,8 @@ class Inconsolable
         void fillRect(size_t coord_x1, size_t coord_x2, size_t coord_y1, size_t coord_y2, IncColor color);
         void drawCircle(size_t coord_x, size_t coord_y, size_t r, IncColor color);
         void drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color,char* c);
-};
+        void fillScreen(IncColor color);
+        bool time_since(int t);
+}; 
+
+#endif

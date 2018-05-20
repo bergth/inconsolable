@@ -1,3 +1,7 @@
+
+class Raquette;
+class Ball;
+
 class Pong
 {
     public:
@@ -18,7 +22,7 @@ class Ball
         int get_x() const;
         int get_y() const;
         int get_r() const;
-        void parcour(int hauteur, int largeur);
+        void parcour(int hauteur, int largeur, Raquette rp, Raquette ria);
         
         
 
@@ -36,11 +40,13 @@ class Ball
 class Raquette
 {
     public:
-        Raquette(int x, int y, int lenght, int large);
+        Raquette(int x1, int y1, int x2, int y2);
         int get_x1() const;
         int get_y1() const;
         int get_x2() const;
         int get_y2() const;
+        void moove_IA(Ball la_balle, int hauteur, int largeur);
+        bool est_la(int x, int y) const;
 
 
     private:
@@ -48,8 +54,8 @@ class Raquette
         int y1;
         int x2;
         int y2;
-        int x_center;
-        int y_center;
+        int centerx;
+        int centery;
         
 
 };
