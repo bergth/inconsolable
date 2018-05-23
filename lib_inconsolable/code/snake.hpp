@@ -1,4 +1,3 @@
-#include<vector>
 #include "libinc.hpp"
 
 
@@ -24,10 +23,12 @@ class Snake
         int size;
         int dir;
         Inconsolable inc;
-        std::vector<coord> v;
+        coord v[200];
+        size_t v_size;
         coord to_delete;
         void draw_snake();
         void move_snake();
+        void get_ctrl();
     public:
         Snake(int _size);
         void play();

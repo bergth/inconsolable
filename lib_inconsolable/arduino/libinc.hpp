@@ -1,13 +1,18 @@
+#ifndef LIBINC_HPP
+#define LIBINC_HPP
+
 #include<stddef.h>
 #include<stdint.h>
-#include <SPI.h>
-#include <Wire.h>
-//#include <Adafruit_GFX.h>
-#include "ILI9341_due.h"
+#include "SPI.h"
+#include "Adafruit_GFX.h"
+#include "Adafruit_ILI9341.h"
 
 
 #define TFT_DC 9
 #define TFT_CS 10
+
+#define JOY_X 7
+#define JOY_Y 6
 
 struct s_color {
     uint8_t r;
@@ -17,11 +22,24 @@ struct s_color {
 
 typedef s_color IncColor;
 
+class Joystick
+{
+    public:
+       //Joystick();
+        float get_x();
+        float get_y();
+    private:
+        float treat_value(int b);
+};
+
+
 class Inconsolable
 {
     private:
-        ILI9341_due screen;
+        Adafruit_ILI9341 screen;
         bool running;
+        int last_time;
+        Joystick J;
     public:
         Inconsolable(size_t sx, size_t sy,size_t FPS);
         ~Inconsolable();
@@ -38,7 +56,13 @@ class Inconsolable
         void drawChar(size_t coord_x, size_t coord_y, char c, size_t txt_size, IncColor color);
         void drawString(size_t coord_x, size_t coord_y, char* s, size_t txt_size, IncColor color);
         void fillScreen(IncColor color);
+        bool time_since(int t);
+        bool get_key_right();
+        bool get_key_left();
+        bool get_key_up();
+        bool get_key_down();
 };
 
 uint16_t incColor_to_uint16_t(IncColor color);
 
+#endif

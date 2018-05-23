@@ -1,8 +1,8 @@
 #ifndef LIBINC_HPP
 #define LIBINC_HPP
-#include<cstddef>
-#include<cstdint>
-#include<chrono>
+#include <cstddef>
+#include <cstdint>
+#include <chrono>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_opengl.h>
@@ -15,8 +15,18 @@ struct s_color {
     uint8_t b;
 };
 
+#define KEY_UP 1
+#define KEY_DOWN 2
+#define KEY_LEFT 3
+#define KEY_RIGHT 4
+
+
 typedef s_color IncColor;
 
+typedef std::chrono::high_resolution_clock Time;
+typedef std::chrono::high_resolution_clock::time_point time_p;
+typedef std::chrono::milliseconds ms;
+typedef std::chrono::duration<float> fsec;
 
 class Inconsolable
 {
@@ -28,7 +38,8 @@ class Inconsolable
         ALLEGRO_TIMEOUT timeout;
         bool running;
         bool redraw;
-        time_t last_time;
+        bool key[4] = {false, false, false, false};
+        time_p last_time;
 
     public:
         Inconsolable(size_t sx, size_t sy,size_t FPS);
@@ -44,6 +55,10 @@ class Inconsolable
         void drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color,char* c);
         void fillScreen(IncColor color);
         bool time_since(int t);
+        bool get_key_up();
+        bool get_key_down();
+        bool get_key_left();
+        bool get_key_right();
 }; 
 
 #endif

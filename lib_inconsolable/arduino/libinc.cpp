@@ -2,13 +2,38 @@
 
 
 
+
+
+float Joystick::get_x()
+{
+  Serial.println(analogRead(JOY_X));
+  Serial.println(treat_value(analogRead(JOY_X)));
+  return treat_value(analogRead(JOY_X));
+}
+
+float Joystick::get_y()
+{
+  return treat_value(analogRead(JOY_Y));
+}
+
+
+float Joystick::treat_value(int b)
+{
+  float res;
+  res = (float)b/1024;
+  return res*2 - 1;
+}
+
+
 Inconsolable::Inconsolable(size_t sx, size_t sy,size_t FPS): screen{TFT_CS,TFT_DC}
 {
+  Serial.begin(9600);
   //init de l'ecran
   running = true;
-  screen = ILI9341_due(TFT_CS, TFT_DC);
+  //screen = Adafruit_ILI9341(TFT_CS, TFT_DC);
   screen.begin();
   fillScreen({0,0,0});
+  last_time = millis();
 }
 
 
@@ -26,7 +51,7 @@ void Inconsolable::clear(){
 
 void Inconsolable::update(){
   delay(1); //peut etre modifiee
-  clear();
+  //clear();
 }
 
 
@@ -92,6 +117,36 @@ void Inconsolable::drawString(size_t coord_x, size_t coord_y, char* s, size_t tx
 }
 
 
+bool Inconsolable::get_key_right()
+{
+  return J.get_y() < -0.2;
+}
+
+bool Inconsolable::get_key_left()
+{
+    return J.get_y() > 0.2;
+}
+
+bool Inconsolable::get_key_up()
+{
+    return J.get_x() < -0.2;
+}
+
+bool Inconsolable::get_key_down()
+{
+  return J.get_x() > 0.2;
+}
+
+bool Inconsolable::time_since(int t)
+{
+  int new_time = millis();
+  if(new_time - last_time > t)
+  {
+    last_time = new_time;
+    return true;
+  }
+  return false;
+}
 
 
 

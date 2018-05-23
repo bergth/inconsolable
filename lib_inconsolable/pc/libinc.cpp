@@ -1,8 +1,5 @@
 #include"libinc.hpp"
 #include<iostream>
-#include<chrono>
-#include <ratio>
-#include<ctime>
 using namespace std;
 using namespace std::chrono;
 
@@ -37,10 +34,11 @@ Inconsolable::Inconsolable(size_t sx, size_t sy, size_t FPS)
         cerr << "Failed to create event queue.\n";
         exit(1);
     }
+    al_install_keyboard();
 
     al_register_event_source(event_queue, al_get_display_event_source(display));
     al_register_event_source(event_queue, al_get_timer_event_source(timer));
-
+    al_register_event_source(event_queue, al_get_keyboard_event_source());
 	al_clear_to_color(al_map_rgb(0, 0, 0));
     al_flip_display();
     al_start_timer(timer);
@@ -50,7 +48,7 @@ Inconsolable::Inconsolable(size_t sx, size_t sy, size_t FPS)
     running = true;
     redraw = true;
 
-    last_time = time(0)*1000;
+    last_time = Time::now();
 }
 
 Inconsolable::~Inconsolable()
@@ -75,6 +73,49 @@ void Inconsolable::update()
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 running = false;
                 break;
+            case ALLEGRO_EVENT_KEY_DOWN:
+                cout << "KEY DOWN" << endl;
+                switch(event.keyboard.keycode) {
+                    case ALLEGRO_KEY_UP:
+                    key[KEY_UP] = true;
+                    break;
+
+                    case ALLEGRO_KEY_DOWN:
+                    key[KEY_DOWN] = true;
+                    break;
+
+                    case ALLEGRO_KEY_LEFT: 
+                    key[KEY_LEFT] = true;
+                    break;
+
+                    case ALLEGRO_KEY_RIGHT:
+                    key[KEY_RIGHT] = true;
+                    break;
+                    default:
+                    break;
+                }
+                break;
+            case ALLEGRO_EVENT_KEY_UP:
+                switch(event.keyboard.keycode) {
+                    case ALLEGRO_KEY_UP:
+                    key[KEY_UP] = false;
+                    break;
+
+                    case ALLEGRO_KEY_DOWN:
+                    key[KEY_DOWN] = false;
+                    break;
+
+                    case ALLEGRO_KEY_LEFT: 
+                    key[KEY_LEFT] = false;
+                    break;
+
+                    case ALLEGRO_KEY_RIGHT:
+                    key[KEY_RIGHT] = false;
+                    break;
+                    default:
+                    break;
+                }
+            break;
             default:
                 //cerr << "Unsupported event received: " << event.type << endl;
                 //exit(1);
@@ -84,13 +125,12 @@ void Inconsolable::update()
 
     if(redraw && al_is_event_queue_empty(event_queue))
     {
-        cout << "refresh" << endl;
         al_flip_display();
-        //al_clear_to_color(al_map_rgb(0,0,0));
         redraw = false;
     }
 
 
+    cout << "l:" << key[KEY_LEFT] << endl;
 
 }
 
@@ -137,11 +177,31 @@ void Inconsolable::drawChar(size_t coord_x, size_t coord_y, size_t txt_size, Inc
 
 bool Inconsolable::time_since(int t)
 {
-    time_t new_time = time(0)*1000;
-    if(new_time - last_time > t)
+    time_p new_time = Time::now();
+    fsec fs = new_time - last_time;
+    int diff = fs.count() * 1000;
+    if(diff > t)
     {
         last_time = new_time;
         return true;
     }
     return false;
+}
+
+bool Inconsolable::get_key_up()
+{
+    return key[KEY_UP];
+}
+
+bool Inconsolable::get_key_down()
+{
+    return key[KEY_DOWN];
+}
+bool Inconsolable::get_key_left()
+{
+    return key[KEY_LEFT];
+}
+bool Inconsolable::get_key_right()
+{
+    return key[KEY_RIGHT];
 }
