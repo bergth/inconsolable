@@ -55,6 +55,7 @@ class Inconsolable
         void drawChar(size_t coord_x, size_t coord_y, size_t txt_size, IncColor color,char* c);
         void fillScreen(IncColor color);
         bool time_since(int t);
+        int rand(int a, int b);
         bool get_key_up();
         bool get_key_down();
         bool get_key_left();

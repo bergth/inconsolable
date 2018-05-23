@@ -62,6 +62,7 @@ class Inconsolable
         void drawString(size_t coord_x, size_t coord_y, char* s, size_t txt_size, IncColor color);
         void fillScreen(IncColor color);
         bool time_since(int t);
+        int  rand(int a, int b);
         bool get_key_right();
         bool get_key_left();
         bool get_key_up();

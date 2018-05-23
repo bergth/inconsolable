@@ -1,10 +1,13 @@
 #include"libinc.hpp"
-#include<iostream>
+#include <cstdlib>
+#include <iostream>
+#include <ctime>
 using namespace std;
 using namespace std::chrono;
 
 Inconsolable::Inconsolable(size_t sx, size_t sy, size_t FPS)
 {
+    std::srand(std::time(nullptr));
     display = NULL;
     event_queue = NULL;
     timer = NULL;
@@ -186,6 +189,17 @@ bool Inconsolable::time_since(int t)
         return true;
     }
     return false;
+}
+
+int Inconsolable::rand(int a, int b)
+{
+    float res_tmp = ((float)std::rand() / RAND_MAX) * (b - a);
+    return res_tmp + a;
+}
+
+void Inconsolable::fillScreen(IncColor color)
+{
+    al_clear_to_color(al_map_rgb(color.r, color.g, color.b));
 }
 
 bool Inconsolable::get_key_up()

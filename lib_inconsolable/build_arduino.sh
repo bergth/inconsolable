@@ -11,6 +11,6 @@ cd tmp/main
 
 #arduino --verify --board $BOARD --port $PORT main.ino
 arduino --upload --board $BOARD --port $PORT main.ino
-#cd ..
-#rm -rf tmp
+cd ..
+rm -rf tmp
 

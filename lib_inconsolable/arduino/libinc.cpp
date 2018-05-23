@@ -152,7 +152,10 @@ bool Inconsolable::time_since(int t)
   return false;
 }
 
-
+int Inconsolable::rand(int a, int b)
+{
+  return random(a,b);
+}
 
 void Inconsolable::fillScreen(IncColor color){
   screen.fillScreen(incColor_to_uint16_t(color));
