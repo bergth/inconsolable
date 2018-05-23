@@ -28,6 +28,10 @@ float Joystick::treat_value(int b)
 Inconsolable::Inconsolable(size_t sx, size_t sy,size_t FPS): screen{TFT_CS,TFT_DC}
 {
   Serial.begin(9600);
+  pinMode(B_DOWN,INPUT);
+  pinMode(B_UP,INPUT);
+  pinMode(B_LEFT,INPUT);
+  pinMode(B_RIGHT,INPUT);
   //init de l'ecran
   running = true;
   //screen = Adafruit_ILI9341(TFT_CS, TFT_DC);
@@ -119,22 +123,22 @@ void Inconsolable::drawString(size_t coord_x, size_t coord_y, char* s, size_t tx
 
 bool Inconsolable::get_key_right()
 {
-  return J.get_y() < -0.2;
+  return digitalRead(B_RIGHT);
 }
 
 bool Inconsolable::get_key_left()
 {
-    return J.get_y() > 0.2;
+    return digitalRead(B_LEFT);
 }
 
 bool Inconsolable::get_key_up()
 {
-    return J.get_x() < -0.2;
+    return digitalRead(B_UP);
 }
 
 bool Inconsolable::get_key_down()
 {
-  return J.get_x() > 0.2;
+  return digitalRead(B_DOWN);
 }
 
 bool Inconsolable::time_since(int t)

@@ -14,6 +14,11 @@
 #define JOY_X 7
 #define JOY_Y 6
 
+#define B_DOWN  37
+#define B_UP    33
+#define B_LEFT  36
+#define B_RIGHT 32
+
 struct s_color {
     uint8_t r;
     uint8_t g;
